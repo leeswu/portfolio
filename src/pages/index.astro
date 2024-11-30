@@ -1,5 +1,6 @@
 ---
-
+import '../styles/global.css'
+import * as PIXI from 'pixi';
 ---
 
 <html lang="en">
@@ -11,6 +12,20 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Portfolio Site</h1>
+		<a href="/">Home</a>
+		<a href="/about/">About</a>
+		<h1>Sophie Wu</h1>
+		<script type="module">
+
+			// Create the PixiJS application
+			const app = new PIXI.Application({ width: 640, height: 360 });
+			document.getElementById('app').appendChild(app.view);
+	  
+			// Add a sprite
+			PIXI.Assets.load('/bird.png').then(() => {
+			  const sprite = PIXI.Sprite.from('/bird.png');
+			  app.stage.addChild(sprite);
+			});
+		  </script>
 	</body>
 </html>

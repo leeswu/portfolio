@@ -1,31 +1,118 @@
 ---
-import '../styles/global.css'
-import * as PIXI from 'pixi';
+import "../styles/global.css";
+// import * as PIXI from 'pixi.js'
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<a href="/">Home</a>
-		<a href="/about/">About</a>
-		<h1>Sophie Wu</h1>
-		<script type="module">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap"
+      rel="stylesheet"
+    />
+  </head><body>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <h1>SOPHIE WU</h1>
+    <script>
+      import {
+        Application,
+        Sprite,
+        Assets,
+        Texture,
+        AnimatedSprite,
+        v8_0_0,
+      } from "pixi.js";
+      // Create the PixiJS application
 
-			// Create the PixiJS application
-			const app = new PIXI.Application({ width: 640, height: 360 });
-			document.getElementById('app').appendChild(app.view);
-	  
-			// Add a sprite
-			PIXI.Assets.load('/bird.png').then(() => {
-			  const sprite = PIXI.Sprite.from('/bird.png');
-			  app.stage.addChild(sprite);
-			});
-		  </script>
-	</body>
+      const app = new Application();
+
+      await app.init({ resizeTo: window });
+
+      // Add the view to the DOM
+      document.body.appendChild(app.canvas);
+
+      // ex, add display objects
+      await Assets.load("/laptop.png");
+      let laptop = Sprite.from("/laptop.png");
+
+      await Assets.load("/bird-big.json");
+
+      // Create an array of textures from the sprite sheet
+      const frames = [];
+
+      for (let i = 0; i < 7; i++) {
+        // Magically works since the spritesheet was loaded with the pixi loader
+        frames.push(Texture.from(`Bird${i}.png`));
+      }
+
+      // Create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+      const anim = new AnimatedSprite(frames);
+
+      /*
+       * An AnimatedSprite inherits all the properties of a PIXI sprite
+       * so you can change its position, its anchor, mask it, etc
+       */
+      anim.x = app.screen.width / 3;
+      anim.y = app.screen.height / 3;
+      anim.anchor.set(0.5);
+      anim.animationSpeed = 0.1;
+      anim.scale.set(0.7)
+      anim.play();
+
+      anim.eventMode = "static";
+      anim.on("pointerdown", onClick);
+      anim.on("pointerover", onOver);
+      anim.on("pointerout", onOut)
+    
+    
+
+      app.stage.addChild(anim);
+
+      function onClick() {
+        location.href = "/about/";
+        // anim.scale.x *= 1.25;
+        // anim.scale.y *= 1.25;
+      }
+
+      function onOver() {
+        anim.tint = "yellow";
+      }
+
+      function onOut() {
+        anim.tint = "0xFFFFFF";
+      }
+
+        app.stage.addChild(laptop);
+
+      //   // Center the sprite's anchor point.
+        laptop.anchor.set(0.5);
+        laptop.scale.set(0.7);
+
+      //   // Move the sprite to the center of the screen.
+        laptop.x = anim.x + 0.75 * laptop.width
+        laptop.y = anim.y + 0.075 * laptop.height
+      //   const center = { x: app.screen.width / 2, y: app.screen.height / 2 };
+
+      //   let elapsed = 0.0;
+      //   app.ticker.add((ticker) => {
+      //     elapsed += ticker.deltaTime;
+      //     bird.y = 150 + bird.y / 2 + Math.cos(elapsed / 25.0) * 2.5;
+      //   });
+
+      // // Add a sprite
+      // PIXI.Assets.load('/bird.png').then(() => {
+      //   const sprite = PIXI.Sprite.from('/bird.png');
+      //   app.stage.addChild(sprite);
+      // });
+    </script>
+  </body>
 </html>

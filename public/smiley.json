@@ -1,0 +1,39 @@
+{"frames": {
+
+"sprite_0.png":
+{
+	"frame": {"x":0,"y":0,"w":1024,"h":1024},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":1024},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"sprite_1.png":
+{
+	"frame": {"x":1024,"y":0,"w":1024,"h":1024},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":1024},
+	"sourceSize": {"w":1024,"h":1024}
+},
+"sprite_2.png":
+{
+	"frame": {"x":0,"y":1024,"w":1024,"h":1024},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1024,"h":1024},
+	"sourceSize": {"w":1024,"h":1024}
+}},
+"animations": {
+	"sprite": ["sprite_0.png","sprite_1.png","sprite_2.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "smiley.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f6fcee0583be5e0c9dbbb0972e187a31:030d59bc59bf89778ed498d121cb426c:21fc407655db6a3fbfbf90c31f5e6ea7$"
+}
+}

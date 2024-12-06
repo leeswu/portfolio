@@ -29,13 +29,12 @@ import "../styles/global.css";
         Assets,
         Texture,
         AnimatedSprite,
-        v8_0_0,
       } from "pixi.js";
       // Create the PixiJS application
 
       const app = new Application();
 
-      await app.init({ resizeTo: window });
+      await app.init({ resizeTo: window, backgroundColor:"blue" });
 
       // Add the view to the DOM
       document.body.appendChild(app.canvas);

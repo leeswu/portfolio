@@ -4,7 +4,7 @@ import { Application, Sprite, Assets, Texture, AnimatedSprite } from "pixi.js";
 export async function createPixiApp() {
   const app = new Application();
 
-  await app.init({ resizeTo: window});
+  await app.init({ resizeTo: window });
 
   // Add the view to the DOM
   document.body.appendChild(app.canvas);
@@ -34,15 +34,13 @@ export async function createPixiApp() {
   anim.y = app.screen.height / 3;
   anim.anchor.set(0.5);
   anim.animationSpeed = 0.1;
-  anim.scale.set(0.7)
+  anim.scale.set(0.7);
   anim.play();
 
   anim.eventMode = "static";
   anim.on("pointerdown", onClick);
   anim.on("pointerover", onOver);
-  anim.on("pointerout", onOut)
-
-
+  anim.on("pointerout", onOut);
 
   app.stage.addChild(anim);
 
@@ -60,13 +58,42 @@ export async function createPixiApp() {
     anim.tint = "0xFFFFFF";
   }
 
-    app.stage.addChild(laptop);
+  app.stage.addChild(laptop);
 
-    laptop.anchor.set(0.5);
-    laptop.scale.set(0.7);
+  laptop.anchor.set(0.5);
+  laptop.scale.set(0.7);
 
-    laptop.x = anim.x + 0.75 * laptop.width
-    laptop.y = anim.y + 0.075 * laptop.height
+  const initial_height = app.screen.height;
+  const initial_width = app.screen.width;
+
+  laptop.x = anim.x + 0.75 * laptop.width;
+  laptop.y = anim.y + 0.075 * laptop.height;
+
+  const resize = () => {
+    console.log("resizig");
+    // Adjust animated sprite
+    anim.x = app.screen.width / 3;
+    anim.y = app.screen.height / 3;
+    anim.scale.set(Math.min(app.screen.width / initial_width, app.screen.height / initial_height) * 0.7);
+
+    // Adjust laptop sprite
+    laptop.x = anim.x + 0.75 * laptop.width;
+    laptop.y = anim.y + 0.075 * laptop.height;
+    laptop.scale.set(Math.min(app.screen.width / initial_width, app.screen.height / initial_height) * 0.7);
+    // const { width, height } = app.renderer.screen;
+
+    // // Adjust animated sprite
+    // anim.x = width / 3;
+    // anim.y = height / 3;
+    // anim.scale.set(Math.min(width / 800, height / 600) * 0.7);
+
+    // // Adjust laptop sprite
+    // laptop.x = anim.x + 0.75 * laptop.width;
+    // laptop.y = anim.y + 0.075 * laptop.height;
+    // laptop.scale.set(Math.min(width / 800, height / 600) * 0.7);
+  };
+
+  window.addEventListener("resize", resize);
 }
 
 // // Call the function after importing

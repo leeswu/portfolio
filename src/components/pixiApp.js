@@ -4,7 +4,7 @@ import { Application, Sprite, Assets, Texture, AnimatedSprite } from "pixi.js";
 export async function createPixiApp() {
   const app = new Application();
 
-  await app.init({ resizeTo: window, backgroundColor:"blue" });
+  await app.init({ resizeTo: window});
 
   // Add the view to the DOM
   document.body.appendChild(app.canvas);
@@ -62,14 +62,12 @@ export async function createPixiApp() {
 
     app.stage.addChild(laptop);
 
-  //   // Center the sprite's anchor point.
     laptop.anchor.set(0.5);
     laptop.scale.set(0.7);
 
-  //   // Move the sprite to the center of the screen.
     laptop.x = anim.x + 0.75 * laptop.width
     laptop.y = anim.y + 0.075 * laptop.height
 }
 
-// Call the function after importing
-createPixiApp();
+// // Call the function after importing
+// createPixiApp();

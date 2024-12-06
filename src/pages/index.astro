@@ -1,13 +1,10 @@
 ---
 import "../styles/global.css";
-import {Image} from "astro:assets";
-
-import birdimg from "/public/bird.png";
 // import * as PIXI from 'pixi.js'
 ---
 
 <html lang="en">
-  <head>
+  <head>../components/pixiApp.js
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
@@ -25,8 +22,8 @@ import birdimg from "/public/bird.png";
     <a href="/">Home</a>
     <a href="/about/">About</a>
     <h1>SOPHIE WU</h1>
-    <Image src={birdimg} alt="A bird sitting on a nest of eggs." />
-    <script>
+    <script src="../components/pixiApp.js"></script>
+    <!-- <script>
       import {
         Application,
         Sprite,
@@ -116,6 +113,6 @@ import birdimg from "/public/bird.png";
       //   const sprite = PIXI.Sprite.from('/bird.png');
       //   app.stage.addChild(sprite);
       // });
-    </script>
+    </script> -->
   </body>
 </html>

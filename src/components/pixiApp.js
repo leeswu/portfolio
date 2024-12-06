@@ -93,6 +93,8 @@ export async function createPixiApp() {
     // laptop.scale.set(Math.min(width / 800, height / 600) * 0.7);
   };
 
+  resize();
+
   window.addEventListener("resize", resize);
 }
 
